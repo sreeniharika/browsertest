@@ -12,6 +12,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.SessionId;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
@@ -34,6 +36,9 @@ public class VerifyEmptyCart extends testbase.base {
 	
 	 private static Logger log = LogManager.getLogger(VerifyEmptyCart.class.getName());
 	 util u = new util();
+	 SessionId session = ((RemoteWebDriver)driver).getSessionId();
+	   public String  jobname  = "verify empty cart";
+	    
 	
 	 @BeforeTest
 	public void driverinitialize() throws IOException{
@@ -42,6 +47,13 @@ public class VerifyEmptyCart extends testbase.base {
 		initializeDriver();
 		log.info("Browser initialized");
 	}
+	 
+	 private void printSessionId() {
+		 
+		    String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",
+		    (((RemoteWebDriver) driver).getSessionId()).toString(), "some job name");
+		    System.out.println(message);
+		} 
 	
 	@Test
 	public void cartItems() throws IOException, InterruptedException{

@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.SessionId;
 import org.testng.annotations.BeforeTest;
 
 
@@ -152,6 +153,7 @@ public class base {
 			DesiredCapabilities caps = DesiredCapabilities.safari();
 			caps.setCapability("platform", "macOS 10.12");
 			caps.setCapability("version", "11.0");
+		//	SessionId session = ((RemoteWebDriver)driver).getSessionId();
                 WebDriver driver = new RemoteWebDriver(new URL(URL),caps);
               driver.get("http://shop.thetestingworld.com/");
                 

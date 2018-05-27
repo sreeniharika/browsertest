@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.SessionId;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -36,6 +37,11 @@ import uiActions.util;
 public class AddItemsToCart extends testbase.base {
 	SoftAssert softAssert = new SoftAssert();
     private static Logger log = LogManager.getLogger(AddItemsToCart.class.getName());
+	util u = new util();
+	testbase.Config config = new testbase.Config(prop);
+    SessionId session = ((RemoteWebDriver)driver).getSessionId();
+   public String  jobname  = "add items";
+    
 	
     @BeforeTest
 	public void driverinitialize() throws IOException{
@@ -46,16 +52,24 @@ public class AddItemsToCart extends testbase.base {
 		//driver.get("http://shop.thetestingworld.com/");
 		
 	}
+    
+    private void printSessionId() {
+		 
+	    String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",
+	    (((RemoteWebDriver) driver).getSessionId()).toString(), "some job name");
+	    System.out.println(message);
+	} 
 	
 	@Test
 	public void cartItems() throws IOException, InterruptedException{
 		
-		testbase.Config config = new testbase.Config(prop);
+		
+		
 	   //  driver.get(config.getUrl());
 		
 		test.log(LogStatus.PASS, "opened url");
 		log.debug("opened URL");
-		util u = new util();
+	
 		
 		Actions a=new Actions(driver);
 		a.moveToElement(getElement("desktop_navbar_xpath")).build().perform();

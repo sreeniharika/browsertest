@@ -17,6 +17,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.SessionId;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
@@ -35,6 +37,9 @@ SoftAssert softAssert = new SoftAssert();
 private static Logger log = LogManager.getLogger(shopNavigate.class.getName());
 util u = new util();
 testbase.Config config = new testbase.Config(prop);
+SessionId session = ((RemoteWebDriver)driver).getSessionId();
+public String  jobname  = "shop navigate";
+ 
 
 @BeforeTest
 public void driverinitialize() throws IOException{
@@ -43,6 +48,14 @@ public void driverinitialize() throws IOException{
 	initializeDriver();
 	
 }
+
+private void printSessionId() {
+	 
+    String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",
+    (((RemoteWebDriver) driver).getSessionId()).toString(), "some job name");
+    System.out.println(message);
+} 
+
 @Test
 public void Verifynavigation() throws IOException, InterruptedException {
 	
